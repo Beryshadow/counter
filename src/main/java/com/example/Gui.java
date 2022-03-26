@@ -24,8 +24,12 @@ public class Gui extends JFrame {
     Button butStopStart = new Button(175, 80, 150, 80, 3, true);
     Button butErase = new Button(175, 160, 150, 80, 3, true);
     Button butMenu = new Button(175, 285, 150, 80, 4, true);
-    Text text1 = new Text(25, 140, 100, 80, 1, true);
-    Text text2 = new Text(25, 220, 100, 80, 1, true);
+    Text text1 = new Text(1);
+    Text text2 = new Text(2);
+    Text text3 = new Text(3);
+    Text text4 = new Text(4);
+    Text text5 = new Text(5);
+    Text text6 = new Text(6);
 
     Gui() {
         j = new JFrame();
@@ -64,6 +68,10 @@ public class Gui extends JFrame {
 
         but1.add(text1);
         but2.add(text2);
+        but3.add(text3);
+        but4.add(text4);
+        but5.add(text5);
+        but6.add(text6);
 
         j.add(but1);
         j.add(but2);
@@ -88,6 +96,19 @@ public class Gui extends JFrame {
         j.setSize(514, 437);// 400 width and 500 height
         j.setLayout(null);// using no layout managers
         j.setVisible(true);// making the frame visible
+
+        // text1.setLocation(this.getParent().getWidth() / 3,
+        // this.getParent().getHeight() / 8);
+
+        // text1.setLocation(35, 10);
+
+        text1.translate(1);
+        text2.translate(2);
+        text3.translate(3);
+        text4.translate(4);
+        text5.translate(5);
+        text6.translate(6);
+        // text1.getParent().repaint();
 
         j.addMouseListener(new MouseListener() {
             public void mouseReleased(MouseEvent e) {

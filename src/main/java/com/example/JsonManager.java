@@ -39,6 +39,12 @@ public class JsonManager {
         }
     }
 
+    public static int getItemlength(int Number) {
+        int lenght = (JsonManager.getFieldOrNA("Value" + Number,
+                folder.readGame("/Counter Files\\settings.txt"))).length();
+        return lenght;
+    }
+
     public static JsonElement getObjectNumX(int num, JsonArray array) {
         JsonElement value = array.get(num);
         if (value != null) {
