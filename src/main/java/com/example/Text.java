@@ -18,6 +18,28 @@ public class Text extends JLabel {
         // this.setLocation(10, 10);
     }
 
+    Text(String string) {
+        // this.setBounds(locationX, locationY, width, height);
+        this.setText(string);
+        this.setForeground(Color.white);
+        Font font = new Font("Segoe UI", Font.BOLD, 40);
+        // this.setForeground(Color.black);
+        this.setFont(font);
+        this.setOpaque(false);
+        // this.setLocation(10, 10);
+    }
+
+    Text(String string, int size) {
+        // this.setBounds(locationX, locationY, width, height);
+        this.setText(string);
+        this.setForeground(Color.white);
+        Font font = new Font("Segoe UI", Font.BOLD, size);
+        // this.setForeground(Color.black);
+        this.setFont(font);
+        this.setOpaque(false);
+        // this.setLocation(10, 10);
+    }
+
     public void translate(int TextLenght) {
         int num = JsonManager.getItemlength(TextLenght);
         System.out.println(num);

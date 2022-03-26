@@ -24,6 +24,9 @@ public class Gui extends JFrame {
     Button butStopStart = new Button(175, 80, 150, 80, 3, true);
     Button butErase = new Button(175, 160, 150, 80, 3, true);
     Button butMenu = new Button(175, 285, 150, 80, 4, true);
+    Text textMenu = new Text("Menu");
+    Text textStopStart = new Text("Stop/Start", 22);
+    Text textErase = new Text("Erase");
     Text text1 = new Text(1);
     Text text2 = new Text(2);
     Text text3 = new Text(3);
@@ -72,6 +75,9 @@ public class Gui extends JFrame {
         but4.add(text4);
         but5.add(text5);
         but6.add(text6);
+        butMenu.add(textMenu);
+        butErase.add(textErase);
+        butStopStart.add(textStopStart);
 
         j.add(but1);
         j.add(but2);
@@ -108,6 +114,10 @@ public class Gui extends JFrame {
         text4.translate(4);
         text5.translate(5);
         text6.translate(6);
+        textMenu.setLocation(20, 10);
+        textErase.setLocation(25, 10);
+        textStopStart.setLocation(20, 25);
+
         // text1.getParent().repaint();
 
         j.addMouseListener(new MouseListener() {
