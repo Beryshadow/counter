@@ -8,7 +8,9 @@ import java.awt.*;
 
 public class Button extends JButton implements ActionListener, MouseListener {
 
-    Button(int locationX, int locationY, int width, int height, int ColorNumber, boolean visible) {
+    int number;
+
+    Button(int locationX, int locationY, int width, int height, int ColorNumber, int action) {
         this.setBounds(locationX, locationY, width, height);
         this.setContentAreaFilled(false);
         this.setBorderPainted(false);
@@ -18,18 +20,18 @@ public class Button extends JButton implements ActionListener, MouseListener {
                 "#" + JsonManager.getFieldOrNA("Color" + ColorNumber,
                         folder.readGame("/Counter Files\\settings.txt"))));
         this.setOpaque(true);
+        this.number = action;
 
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // this.setBorder(BorderFactory.createLineBorder(Color.black, 20));
-        System.out.println("yep");
         this.setBackground(Color.decode(colorise(this)).darker().darker());
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+
     }
 
     @Override
@@ -49,7 +51,8 @@ public class Button extends JButton implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this) {
-            System.out.println(this.toString());
+            System.out.println(this.number);
+            folder.Log(this.number);
         }
     }
 
@@ -64,21 +67,24 @@ public class Button extends JButton implements ActionListener, MouseListener {
         graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         Color colored;
-
-        if (this.getX() < 150) {
-            colored = Color.decode("#" + JsonManager.getFieldOrNA("Color1",
-                    folder.readGame("/Counter Files\\settings.txt")));
-        } else if (this.getX() > 350) {
-            colored = Color.decode("#" + JsonManager.getFieldOrNA("Color2",
-                    folder.readGame("/Counter Files\\settings.txt")));
-        } else if (this.getY() < 250) {
-            colored = Color.decode("#" + JsonManager.getFieldOrNA("Color3",
-                    folder.readGame("/Counter Files\\settings.txt")));
-        } else if (this.getY() > 250) {
-            colored = Color.decode("#" + JsonManager.getFieldOrNA("Color4",
-                    folder.readGame("/Counter Files\\settings.txt")));
-        } else {
-            colored = Color.white;
+        try {
+            if (this.getX() < 150) {
+                colored = Color.decode("#" + JsonManager.getFieldOrNA("Color1",
+                        folder.readGame("/Counter Files\\settings.txt")));
+            } else if (this.getX() > 350) {
+                colored = Color.decode("#" + JsonManager.getFieldOrNA("Color2",
+                        folder.readGame("/Counter Files\\settings.txt")));
+            } else if (this.getY() < 250) {
+                colored = Color.decode("#" + JsonManager.getFieldOrNA("Color3",
+                        folder.readGame("/Counter Files\\settings.txt")));
+            } else if (this.getY() > 250) {
+                colored = Color.decode("#" + JsonManager.getFieldOrNA("Color4",
+                        folder.readGame("/Counter Files\\settings.txt")));
+            } else {
+                colored = Color.white;
+            }
+        } catch (Exception e) {
+            colored = Color.decode("#FFFFFF");
         }
 
         // Draws the rounded panel with borders.
@@ -87,7 +93,7 @@ public class Button extends JButton implements ActionListener, MouseListener {
         graphics.setColor(colored.darker().darker().darker());
         graphics.drawRoundRect(1, 1, width - 2, height - 2, arcs.width, arcs.height);// paint border
         graphics.drawRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);
-        graphics.drawRoundRect(2, 2, width - 4, height - 4, arcs.width + 2, arcs.height + 2);
+        graphics.drawRoundRect(2, 2, width - 4, height - 4, arcs.width, arcs.height);
     }
 
     private static String colorise(Button that) {

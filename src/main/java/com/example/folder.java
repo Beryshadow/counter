@@ -19,9 +19,9 @@ public class folder {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        if (readGame("/Counter Files\\settings.txt") != null) { // TODO check if file is ok
+        if (readGame("/Counter Files\\settings.txt") != null) {
             fileData = readGame("/Counter Files\\settings.txt");
-        } else if (readGame("/Counter Files\\settings.txt") == null) { // TODO check if file is ok
+        } else if (readGame("/Counter Files\\settings.txt") == null) {
             fileData = readGame("/Counter Files\\settings.txt");
             try {
                 FileWriter myWriter = new FileWriter("/Counter Files\\settings.txt");
@@ -51,6 +51,10 @@ public class folder {
         } else {
             System.out.println("Something went wrong with folder creation");
         }
+    }
+
+    public static void Log(int action) {
+        // TODO instantiate this function
     }
 
     public static void NewGame(int number) { // use of api key = 0

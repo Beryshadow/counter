@@ -15,17 +15,17 @@ public class Gui extends JFrame {
     static Point mouseDownScreenCoords;
     static Point mouseDownCompCoords;
     JFrame j;
-    Button but1 = new Button(25, 140, 100, 80, 1, true);
-    Button but2 = new Button(25, 220, 100, 80, 1, true);
-    Button but3 = new Button(25, 300, 100, 80, 1, true);
-    Button but4 = new Button(375, 140, 100, 80, 2, true);
-    Button but5 = new Button(375, 220, 100, 80, 2, true);
-    Button but6 = new Button(375, 300, 100, 80, 2, true);
-    Button butStopStart = new Button(175, 80, 150, 80, 3, true);
-    Button butErase = new Button(175, 160, 150, 80, 3, true);
-    Button butMenu = new Button(175, 285, 150, 80, 4, true);
+    Button but1 = new Button(25, 140, 100, 80, 1, 1);
+    Button but2 = new Button(25, 220, 100, 80, 1, 2);
+    Button but3 = new Button(25, 300, 100, 80, 1, 3);
+    Button but4 = new Button(375, 140, 100, 80, 2, 4);
+    Button but5 = new Button(375, 220, 100, 80, 2, 5);
+    Button but6 = new Button(375, 300, 100, 80, 2, 6);
+    Button butStopStart = new Button(175, 80, 150, 80, 3, 7);
+    Button butErase = new Button(175, 160, 150, 80, 3, 8);
+    Button butMenu = new Button(175, 285, 150, 80, 4, 9);
     Text textMenu = new Text("Menu");
-    Text textStopStart = new Text("Stop/Start", 22);
+    Text textStopStart = new Text("<html>Stop/<br/>Start</html>", 30);
     Text textErase = new Text("Erase");
     Text text1 = new Text(1);
     Text text2 = new Text(2);
@@ -79,6 +79,12 @@ public class Gui extends JFrame {
         butErase.add(textErase);
         butStopStart.add(textStopStart);
 
+        Text l1 = new Text("0", 80);
+        Text l2 = new Text("0", 80);
+
+        one.add(l1);
+        two.add(l2);
+
         j.add(but1);
         j.add(but2);
         j.add(but3);
@@ -89,8 +95,8 @@ public class Gui extends JFrame {
         j.add(butErase);
         j.add(butMenu);
 
-        j.add(three);
         j.add(four);
+        j.add(three);
         j.add(one);
         j.add(two);
 
@@ -116,9 +122,9 @@ public class Gui extends JFrame {
         text6.translate(6);
         textMenu.setLocation(20, 10);
         textErase.setLocation(25, 10);
-        textStopStart.setLocation(20, 25);
-
-        // text1.getParent().repaint();
+        textStopStart.setLocation(40, 5);
+        l1.setLocation(50, 20);
+        l2.setLocation(50, 20);
 
         j.addMouseListener(new MouseListener() {
             public void mouseReleased(MouseEvent e) {
