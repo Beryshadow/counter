@@ -126,6 +126,9 @@ public class Gui extends JFrame {
         l1.setLocation(50, 20);
         l2.setLocation(50, 20);
 
+        // l1.setText("h10");
+        // l1.getParent().repaint();
+
         j.addMouseListener(new MouseListener() {
             public void mouseReleased(MouseEvent e) {
                 mouseDownScreenCoords = null;

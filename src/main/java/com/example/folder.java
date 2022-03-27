@@ -53,8 +53,38 @@ public class folder {
         }
     }
 
-    public static void Log(int action) {
-        // TODO instantiate this function
+    public static void Log(int action, int game) {
+        JsonObject fileData = readGame("/Counter Files\\Saves\\" + game + ".txt");
+        try {
+            int templength = 0;
+            while (true) {
+                templength++;
+                if (JsonManager.getFieldOrNA(String.valueOf(templength), fileData).equals("N/A")) {
+                    break;
+                }
+            }
+
+            // String temp1 = JsonManager.getFieldOrNA(String.valueOf(templength - 1),
+            // fileData);
+            fileData.addProperty(String.valueOf(templength), action);
+            fileData.addProperty("contentAmount",
+                    Integer.parseInt(JsonManager.getFieldOrNA("contentAmount", fileData)) + 1);
+
+            System.out.println("templentght " + templength);
+
+            // fileData.addProperty("action" + action, JsonManager.getFieldOrNA("Value" +
+            // action,
+            // folder.readGame("/Counter Files\\settings.txt")));
+
+        } catch (Exception e) {
+        }
+        try {
+            FileWriter myWriter = new FileWriter("/Counter Files\\Saves\\" + game + ".txt");
+            myWriter.write(String.valueOf(fileData));
+            myWriter.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public static void NewGame(int number) { // use of api key = 0
