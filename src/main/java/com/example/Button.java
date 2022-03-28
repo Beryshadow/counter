@@ -53,6 +53,8 @@ public class Button extends JButton implements ActionListener, MouseListener {
         if (e.getSource() == this) {
             System.out.println(this.number);
             folder.Log(this.number, 1); // TODO setup new game maker
+
+            this.getParent().repaint();
         }
     }
 

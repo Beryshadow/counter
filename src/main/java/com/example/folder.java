@@ -67,6 +67,8 @@ public class folder {
             // String temp1 = JsonManager.getFieldOrNA(String.valueOf(templength - 1),
             // fileData);
             fileData.addProperty(String.valueOf(templength), action);
+            fileData.addProperty("team1Count", action); // TODO fix this to work with the data
+            fileData.addProperty("team2Count", action);
             fileData.addProperty("contentAmount",
                     Integer.parseInt(JsonManager.getFieldOrNA("contentAmount", fileData)) + 1);
 

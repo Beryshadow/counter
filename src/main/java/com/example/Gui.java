@@ -3,6 +3,7 @@ package com.example;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.ActionListener;
 import java.awt.Point;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -79,8 +80,10 @@ public class Gui extends JFrame {
         butErase.add(textErase);
         butStopStart.add(textStopStart);
 
-        Text l1 = new Text("0", 80);
-        Text l2 = new Text("0", 80);
+        Text l1 = new Text((JsonManager.getFieldOrNA("team1Count",
+                folder.readGame("/Counter Files\\Saves\\" + "1" + ".txt"))), 80);
+        Text l2 = new Text((JsonManager.getFieldOrNA("team2Count",
+                folder.readGame("/Counter Files\\Saves\\" + "1" + ".txt"))), 80);
 
         one.add(l1);
         two.add(l2);
@@ -126,6 +129,24 @@ public class Gui extends JFrame {
         l1.setLocation(50, 20);
         l2.setLocation(50, 20);
 
+        l1.addMouseListener(new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            public void mousePressed(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseReleased(MouseEvent e) {
+            }
+        });
+
         // l1.setText("h10");
         // l1.getParent().repaint();
 
@@ -163,4 +184,5 @@ public class Gui extends JFrame {
         });
 
     }
+
 }
