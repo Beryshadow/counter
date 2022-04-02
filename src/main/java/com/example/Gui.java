@@ -11,7 +11,6 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.*;
 
 public class Gui extends JFrame {
-
     static Point mouseDownScreenCoords;
     static Point mouseDownCompCoords;
     static JFrame j;
@@ -33,6 +32,7 @@ public class Gui extends JFrame {
     public static Text text4 = new Text(4);
     public static Text text5 = new Text(5);
     public static Text text6 = new Text(6);
+    public static Stopwatch stopwatch = new Stopwatch();
     public static Text l1 = new Text((JsonManager.getFieldOrNA("team1Count",
             folder.readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt"))), 80);
     public static Text l2 = new Text((JsonManager.getFieldOrNA("team2Count",
@@ -83,6 +83,8 @@ public class Gui extends JFrame {
         butErase.add(textErase);
         butStopStart.add(textStopStart);
 
+        three.add(stopwatch);
+
         one.add(l1);
         two.add(l2);
 
@@ -111,9 +113,36 @@ public class Gui extends JFrame {
         j.setLayout(null);
         j.setVisible(true);
 
-        l1.addMouseListener(new MouseListener() {
+        butStopStart.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
+                if (App.stopStart == true) {
+                    Stopwatch.stop();
+                    App.stopStart = false;
+                } else {
+                    Stopwatch.start();
+                    App.stopStart = true;
+                }
+            }
 
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseReleased(MouseEvent e) {
+
+            }
+        });
+
+        butErase.addMouseListener(new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+                Stopwatch.elapsedTime = 0;
+                stopwatch.setText("0:00:00:000");
             }
 
             public void mousePressed(MouseEvent e) {

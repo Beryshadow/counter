@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.Point;
 import javax.swing.*;
-import javax.swing.border.Border;
 
 import java.awt.geom.RoundRectangle2D;
 import java.awt.*;
@@ -13,6 +12,9 @@ import java.awt.*;
 import javax.swing.JFrame;
 
 public class Menu extends JFrame {
+
+    static Point mouseDownScreenCoords;
+    static Point mouseDownCompCoords;
 
     public Menu() {
 
@@ -45,6 +47,7 @@ public class Menu extends JFrame {
         setLocation(Gui.j.getLocation());
         this.setSize(514, 437);
         this.setLayout(null);
+        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 40, 17, Color.black));
         this.setVisible(true);
         if (Gui.j != null) {
             Gui.j.dispose();
@@ -76,6 +79,41 @@ public class Menu extends JFrame {
 
             public void mouseReleased(MouseEvent e) {
 
+            }
+        });
+
+        this.addMouseListener(new MouseListener() {
+            public void mouseReleased(MouseEvent e) {
+                mouseDownScreenCoords = null;
+                mouseDownCompCoords = null;
+            }
+
+            public void mousePressed(MouseEvent e) {
+                mouseDownScreenCoords = e.getLocationOnScreen();
+                mouseDownCompCoords = e.getPoint();
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            public void mouseClicked(MouseEvent e) {
+
+            }
+        });
+
+        this.addMouseMotionListener(new MouseMotionListener() {
+            public void mouseMoved(MouseEvent e) {
+            }
+
+            public void mouseDragged(MouseEvent e) {
+                Point currCoords = e.getLocationOnScreen();
+                setLocation(
+                        mouseDownScreenCoords.x + (currCoords.x - mouseDownScreenCoords.x) - mouseDownCompCoords.x,
+                        mouseDownScreenCoords.y + (currCoords.y - mouseDownScreenCoords.y) - mouseDownCompCoords.y);
             }
         });
     }
