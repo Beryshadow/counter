@@ -8,6 +8,6 @@ public final class App {
         folder.createFile();
         int number = 1;
         folder.NewGame(number);
-        new Gui();
+        new Gui(0, 0);
     }
 }

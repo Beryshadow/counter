@@ -36,6 +36,7 @@ public class Button extends JButton implements ActionListener, MouseListener {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
     }
 
     @Override
@@ -46,15 +47,30 @@ public class Button extends JButton implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (this.number == 13) {
+            // close the menu and open gui
+            Gui.j.setVisible(false);
+        } else if (this.number == 11) {
+            System.exit(0);
+        } else if (this.number == 12) {
+            folder.deletelast();
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this) {
-            System.out.println(this.number);
-            folder.Log(this.number, 1); // TODO setup new game maker
+            folder.Log(this.number);
+            if (this.number == 9) {
+                new Menu();
+            }
 
-            this.getParent().repaint();
+            Gui.l1.setText(JsonManager.getFieldOrNA("team1Count",
+                    folder.readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt")));
+
+            Gui.l2.setText(JsonManager.getFieldOrNA("team2Count",
+                    folder.readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt")));
+
         }
     }
 
@@ -70,12 +86,16 @@ public class Button extends JButton implements ActionListener, MouseListener {
 
         Color colored;
         try {
-            if (this.getX() < 150) {
+            if (this.getX() == 50) {
+                colored = Color.decode("#" + JsonManager.getFieldOrNA("Color4",
+                        folder.readGame("/Counter Files\\settings.txt")));
+            } else if (this.getX() < 150) {
                 colored = Color.decode("#" + JsonManager.getFieldOrNA("Color1",
                         folder.readGame("/Counter Files\\settings.txt")));
             } else if (this.getX() > 350) {
                 colored = Color.decode("#" + JsonManager.getFieldOrNA("Color2",
                         folder.readGame("/Counter Files\\settings.txt")));
+
             } else if (this.getY() < 250) {
                 colored = Color.decode("#" + JsonManager.getFieldOrNA("Color3",
                         folder.readGame("/Counter Files\\settings.txt")));
@@ -101,7 +121,10 @@ public class Button extends JButton implements ActionListener, MouseListener {
     private static String colorise(Button that) {
         String str = "#FFFFFF";
         try {
-            if (that.getX() < 150) {
+            if (that.getX() == 50) {
+                return ("#" + JsonManager.getFieldOrNA("Color4",
+                        folder.readGame("/Counter Files\\settings.txt")));
+            } else if (that.getX() < 150) {
                 return ("#" + JsonManager.getFieldOrNA("Color1",
                         folder.readGame("/Counter Files\\settings.txt")));
             } else if (that.getX() > 350) {

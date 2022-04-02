@@ -30,18 +30,4 @@ public class Text extends JLabel {
         this.setFont(font);
         this.setOpaque(false);
     }
-
-    public void translate(int TextLenght) {
-        int num = JsonManager.getItemlength(TextLenght);
-        System.out.println(num);
-        if (num == 1) {
-            this.setLocation(40, 10);
-        } else if (num == 2) {
-            this.setLocation(25, 10);
-        } else if (num == 3) {
-            this.setLocation(10, 10);
-        } else if (num == 4) {
-            this.setLocation(5, 10);
-        }
-    }
 }
