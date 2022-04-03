@@ -24,8 +24,8 @@ public class Gui extends JFrame {
     Button butErase = new Button(175, 160, 150, 80, 3, 8);
     Button butMenu = new Button(175, 285, 150, 80, 4, 9);
     public static Text textMenu = new Text("Menu");
-    public static Text textStopStart = new Text("<html>Stop/<br/>Start</html>", 30);
-    public static Text textErase = new Text("Erase");
+    public static Text textStopStart = new Text("<html>Démarrer<br/>Arrêter</html>", 25);
+    public static Text textErase = new Text("Effacer", 35);
     public static Text text1 = new Text(1);
     public static Text text2 = new Text(2);
     public static Text text3 = new Text(3);
@@ -103,7 +103,7 @@ public class Gui extends JFrame {
         j.add(one);
         j.add(two);
 
-        j.setTitle("Counter");
+        j.setTitle("Compteur");
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         j.getContentPane().setBackground(Color.WHITE);
         j.setUndecorated(true);
@@ -115,12 +115,12 @@ public class Gui extends JFrame {
 
         butStopStart.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
-                if (App.stopStart == true) {
+                if (Stopwatch.stopStart == true) {
                     Stopwatch.stop();
-                    App.stopStart = false;
+                    Stopwatch.stopStart = false;
                 } else {
                     Stopwatch.start();
-                    App.stopStart = true;
+                    Stopwatch.stopStart = true;
                 }
             }
 
@@ -142,6 +142,8 @@ public class Gui extends JFrame {
         butErase.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
                 Stopwatch.elapsedTime = 0;
+                Stopwatch.time = System.nanoTime();
+                Stopwatch.savedTime = 0;
                 stopwatch.setText("0:00:00:000");
             }
 

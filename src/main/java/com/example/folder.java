@@ -6,8 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import javax.swing.text.AbstractDocument.Content;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -48,11 +46,8 @@ public class folder {
         f1.mkdir();
         boolean bool = f2.mkdir();
         if (bool) {
-            System.out.println("Storage folder created successfully");
         } else if (f1.exists()) {
-            System.out.println("Files found");
         } else {
-            System.out.println("Something went wrong with folder creation");
         }
     }
 

@@ -7,12 +7,13 @@ import javax.swing.*;
 public class Stopwatch extends JLabel {
 
     static long time = System.nanoTime();
+    static long savedTime = 0;
     static long elapsedTime = 0;
     static long millis = 0;
     static long seconds = 0;
     static long minutes = 0;
     static long hours = 0;
-    boolean stopStart = false;
+    static boolean stopStart = false;
 
     static String millisString = String.format("%03d", millis);
     static String secondsString = String.format("%02d", seconds);
@@ -21,7 +22,9 @@ public class Stopwatch extends JLabel {
 
     static Timer timer = new Timer(1, new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-            elapsedTime = ((System.nanoTime() - time) / 1000000);
+
+            elapsedTime = ((System.nanoTime() - time + savedTime) / 1000000);
+
             hours = (elapsedTime / 3600000);
             minutes = (elapsedTime / 60000) % 60;
             seconds = (elapsedTime / 1000) % 60;
@@ -30,7 +33,7 @@ public class Stopwatch extends JLabel {
             secondsString = String.format("%02d", seconds);
             minutesString = String.format("%02d", minutes);
             hoursString = String.format("%01d", hours);
-            System.out.println(System.nanoTime());
+
             Gui.stopwatch.setText(hoursString + ":" + minutesString + ":" + secondsString + ":" + millisString);
         }
     });
@@ -44,10 +47,12 @@ public class Stopwatch extends JLabel {
     }
 
     public static void start() {
+        time = System.nanoTime();
         timer.start();
     }
 
     public static void stop() {
+        savedTime = (System.nanoTime() - time + savedTime);
         timer.stop();
     }
 }

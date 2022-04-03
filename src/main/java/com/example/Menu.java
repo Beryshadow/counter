@@ -24,9 +24,9 @@ public class Menu extends JFrame {
         Button but4 = new Button(50, 305, 400, 75, 4, 13);
 
         Text textNew = new Text("Nouvelle partie", 20);
-        Text textClose = new Text("Fermer le programe", 20);
-        Text textCancel = new Text("Annuler la derniere action", 20);
-        Text textBack = new Text("Retour en arriere", 20);
+        Text textClose = new Text("Fermer le programme", 20);
+        Text textCancel = new Text("Annuler la dernière action", 20);
+        Text textBack = new Text("Retour en arrière", 20);
 
         but1.add(textNew);
         but2.add(textClose);
@@ -56,6 +56,35 @@ public class Menu extends JFrame {
         but4.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getSource() == but4) {
+                    int x = Menu.this.getX();
+                    int y = Menu.this.getY();
+                    Menu.this.dispose();
+                    new Gui(x, y);
+                    // make a new gui at the same location as the menu
+
+                }
+            }
+
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            public void mouseReleased(MouseEvent e) {
+
+            }
+        });
+
+        but1.addMouseListener(new MouseListener() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getSource() == but1) {
                     int x = Menu.this.getX();
                     int y = Menu.this.getY();
                     Menu.this.dispose();
