@@ -16,7 +16,7 @@ public class Menu extends JFrame {
     static Point mouseDownScreenCoords;
     static Point mouseDownCompCoords;
 
-    public Menu() {
+    public Menu(int x, int y) {
 
         Button but1 = new Button(50, 20, 400, 75, 4, 10);
         Button but2 = new Button(50, 115, 400, 75, 4, 11);
@@ -43,25 +43,24 @@ public class Menu extends JFrame {
         this.getContentPane().setBackground(Color.decode(
                 "#" + JsonManager.getFieldOrNA("Color4", folder.readGame("/Counter Files\\settings.txt"))));
         this.setUndecorated(true);
-        this.setShape(new RoundRectangle2D.Double(0, 0, 499, 399, 40, 40));
+        this.setShape(new RoundRectangle2D.Double(0, 0, x, y, 40, 40));
         setLocation(Gui.j.getLocation());
-        this.setSize(514, 437);
+        this.setSize(x + 15, y + 38);
         this.setLayout(null);
         getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 40, 17, Color.black));
         this.setVisible(true);
+
         if (Gui.j != null) {
             Gui.j.dispose();
         }
-
         but4.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getSource() == but4) {
                     int x = Menu.this.getX();
                     int y = Menu.this.getY();
-                    Menu.this.dispose();
                     new Gui(x, y);
+                    Menu.this.dispose();
                     // make a new gui at the same location as the menu
-
                 }
             }
 
@@ -87,10 +86,9 @@ public class Menu extends JFrame {
                 if (e.getSource() == but1) {
                     int x = Menu.this.getX();
                     int y = Menu.this.getY();
-                    Menu.this.dispose();
                     new Gui(x, y);
+                    Menu.this.dispose();
                     // make a new gui at the same location as the menu
-
                 }
             }
 

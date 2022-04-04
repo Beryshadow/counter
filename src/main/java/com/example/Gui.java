@@ -1,8 +1,6 @@
 package com.example;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.Point;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -196,6 +194,5 @@ public class Gui extends JFrame {
                         mouseDownScreenCoords.y + (currCoords.y - mouseDownScreenCoords.y) - mouseDownCompCoords.y);
             }
         });
-
     }
 }

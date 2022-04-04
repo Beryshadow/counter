@@ -111,7 +111,6 @@ public class folder {
                 ex.printStackTrace();
             }
         } else if (action == 10) {
-            System.out.println("new game");
             NewGame(recent() + 1);
         }
     }

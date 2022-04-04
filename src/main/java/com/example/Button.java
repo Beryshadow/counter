@@ -62,7 +62,7 @@ public class Button extends JButton implements ActionListener, MouseListener {
         if (e.getSource() == this) {
             folder.Log(this.number);
             if (this.number == 9) {
-                new Menu();
+                new Menu(499, 399);
             }
 
             Gui.l1.setText(JsonManager.getFieldOrNA("team1Count",
