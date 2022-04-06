@@ -12,6 +12,13 @@ public class Gui extends JFrame {
     static Point mouseDownScreenCoords;
     static Point mouseDownCompCoords;
     static JFrame j;
+    Action Button1;
+    Action Button2;
+    Action Button3;
+    Action Button4;
+    Action Button5;
+    Action Button6;
+    Action Cancel;
     Button but1 = new Button(25, 140, 100, 80, 1, 1);
     Button but2 = new Button(25, 220, 100, 80, 1, 2);
     Button but3 = new Button(25, 300, 100, 80, 1, 3);
@@ -100,6 +107,37 @@ public class Gui extends JFrame {
         j.add(three);
         j.add(one);
         j.add(two);
+
+        Button1 = new Button1();
+        Button2 = new Button2();
+        Button3 = new Button3();
+        Button4 = new Button4();
+        Button5 = new Button5();
+        Button6 = new Button6();
+        Cancel = new Cancel();
+
+        JRootPane rootPane = j.getRootPane();
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('1'), "button1");
+        rootPane.getActionMap().put("button1", Button1);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('2'), "button2");
+        rootPane.getActionMap().put("button2", Button2);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('3'), "button3");
+        rootPane.getActionMap().put("button3", Button3);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('4'), "button4");
+        rootPane.getActionMap().put("button4", Button4);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('5'), "button5");
+        rootPane.getActionMap().put("button5", Button5);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('6'), "button6");
+        rootPane.getActionMap().put("button6", Button6);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('7'), "cancel");
+        rootPane.getActionMap().put("cancel", Cancel);
 
         j.setTitle("Compteur");
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -194,5 +232,71 @@ public class Gui extends JFrame {
                         mouseDownScreenCoords.y + (currCoords.y - mouseDownScreenCoords.y) - mouseDownCompCoords.y);
             }
         });
+
     }
+
+    public class Button1 extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(1);
+            refresh();
+        }
+    }
+
+    public class Button2 extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(2);
+            refresh();
+        }
+    }
+
+    public class Button3 extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(3);
+            refresh();
+        }
+    }
+
+    public class Button4 extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(4);
+            refresh();
+        }
+    }
+
+    public class Button5 extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(5);
+            refresh();
+        }
+    }
+
+    public class Button6 extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(6);
+            refresh();
+        }
+    }
+
+    public class Cancel extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.deletelast();
+            refresh();
+        }
+    }
+
+    public void refresh() {
+        Gui.l1.setText(JsonManager.getFieldOrNA("team1Count",
+                folder.readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt")));
+
+        Gui.l2.setText(JsonManager.getFieldOrNA("team2Count",
+                folder.readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt")));
+    }
+
 }
