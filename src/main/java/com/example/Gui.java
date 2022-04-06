@@ -18,6 +18,7 @@ public class Gui extends JFrame {
     Action Button4;
     Action Button5;
     Action Button6;
+    Action Start_stop;
     Action Cancel;
     Button but1 = new Button(25, 140, 100, 80, 1, 1);
     Button but2 = new Button(25, 220, 100, 80, 1, 2);
@@ -114,29 +115,62 @@ public class Gui extends JFrame {
         Button4 = new Button4();
         Button5 = new Button5();
         Button6 = new Button6();
+        Start_stop = new Start_stop();
         Cancel = new Cancel();
 
         JRootPane rootPane = j.getRootPane();
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('1'), "button1");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("Buton1", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "button1");
         rootPane.getActionMap().put("button1", Button1);
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('2'), "button2");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("Buton2", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "button2");
         rootPane.getActionMap().put("button2", Button2);
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('3'), "button3");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("Buton3", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "button3");
         rootPane.getActionMap().put("button3", Button3);
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('4'), "button4");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("Buton4", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "button4");
         rootPane.getActionMap().put("button4", Button4);
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('5'), "button5");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("Buton5", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "button5");
         rootPane.getActionMap().put("button5", Button5);
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('6'), "button6");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("Buton6", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "button6");
         rootPane.getActionMap().put("button6", Button6);
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke('7'), "cancel");
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(
+                        (JsonManager.getFieldOrNA("PauseT", folder.readGame("/Counter Files\\settings.txt")))
+                                .charAt(0)),
+                        "start_stop");
+        rootPane.getActionMap().put("start_stop", Start_stop);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_DOWN_MASK), "cancel");
         rootPane.getActionMap().put("cancel", Cancel);
 
         j.setTitle("Compteur");
@@ -280,6 +314,19 @@ public class Gui extends JFrame {
         public void actionPerformed(ActionEvent e) {
             folder.Log(6);
             refresh();
+        }
+    }
+
+    public class Start_stop extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Stopwatch.stopStart == true) {
+                Stopwatch.stop();
+                Stopwatch.stopStart = false;
+            } else {
+                Stopwatch.start();
+                Stopwatch.stopStart = true;
+            }
         }
     }
 

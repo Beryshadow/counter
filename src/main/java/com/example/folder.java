@@ -27,7 +27,7 @@ public class folder {
             try {
                 FileWriter myWriter = new FileWriter("/Counter Files\\settings.txt");
                 myWriter.write(String.valueOf(
-                        "{Color1:192FFF,Color2:FF2628,Color3:4AFF7C,Color4:FFD132,Buton1:e,Buton2:d,Buton3:c,Buton4:y,Buton5:g,Buton6:v,Cancel:Crtl+z,PauseT:spacebar,Escape:esc,Value1:1,Value2:2,Value3:-1,Value4:1,Value5:2,Value6:-1}"));
+                        "{Color1:192FFF,Color2:FF2628,Color3:4AFF7C,Color4:FFD132,Buton1:1,Buton2:2,Buton3:3,Buton4:4,Buton5:5,Buton6:6,PauseT:p,Value1:1,Value2:2,Value3:-1,Value4:1,Value5:2,Value6:-1}"));
                 myWriter.close();
             } catch (Exception e) {
                 e.printStackTrace();
