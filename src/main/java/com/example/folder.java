@@ -54,6 +54,9 @@ public class folder {
     public static void Log(int action) {
         if (!(action >= 7)) {
             JsonObject fileData = readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt");
+            final JsonObject original = fileData;
+            int count = 0;
+            int toBeAdded = 0;
             try {
                 int templength = 0;
                 while (true) {
@@ -66,52 +69,83 @@ public class folder {
                 fileData.addProperty(String.valueOf(templength), action);
 
                 if (action == 1) {
-                    int count = Integer.valueOf(JsonManager.getFieldOrNA("team1Count", fileData));
-                    int toBeAdded = Integer.valueOf(
+                    count = Integer.valueOf(JsonManager.getFieldOrNA("team1Count", fileData));
+                    toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value1", folder.readGame("/Counter Files\\settings.txt")));
+
+                    if (count + toBeAdded > 999 || count + toBeAdded < -99) {
+                        return;
+                    }
                     fileData.addProperty("team1Count", count + toBeAdded);
+
                 } else if (action == 2) {
-                    int count = Integer.valueOf(JsonManager.getFieldOrNA("team1Count", fileData));
-                    int toBeAdded = Integer.valueOf(
+                    count = Integer.valueOf(JsonManager.getFieldOrNA("team1Count", fileData));
+                    toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value2", folder.readGame("/Counter Files\\settings.txt")));
+                    if (count + toBeAdded > 999 || count + toBeAdded < -99) {
+                        return;
+                    }
                     fileData.addProperty("team1Count", count + toBeAdded);
                 } else if (action == 3) {
-                    int count = Integer.valueOf(JsonManager.getFieldOrNA("team1Count", fileData));
-                    int toBeAdded = Integer.valueOf(
+                    count = Integer.valueOf(JsonManager.getFieldOrNA("team1Count", fileData));
+                    toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value3", folder.readGame("/Counter Files\\settings.txt")));
+                    if (count + toBeAdded > 999 || count + toBeAdded < -99) {
+                        return;
+                    }
                     fileData.addProperty("team1Count", count + toBeAdded);
                 } else if (action == 4) {
-                    int count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
-                    int toBeAdded = Integer.valueOf(
+                    count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
+                    toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value4", folder.readGame("/Counter Files\\settings.txt")));
+                    if (count + toBeAdded > 999 || count + toBeAdded < -99) {
+                        return;
+                    }
                     fileData.addProperty("team2Count", count + toBeAdded);
                 } else if (action == 5) {
-                    int count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
-                    int toBeAdded = Integer.valueOf(
+                    count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
+                    toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value5", folder.readGame("/Counter Files\\settings.txt")));
+                    if (count + toBeAdded > 999 || count + toBeAdded < -99) {
+                        return;
+                    }
                     fileData.addProperty("team2Count", count + toBeAdded);
                 } else if (action == 6) {
-                    int count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
-                    int toBeAdded = Integer.valueOf(
+                    count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
+                    toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value6", folder.readGame("/Counter Files\\settings.txt")));
+                    System.out.println(count + toBeAdded);
+                    if (count + toBeAdded > 999 || count + toBeAdded < -99) {
+                        return;
+                    }
                     fileData.addProperty("team2Count", count + toBeAdded);
                 }
 
-                fileData.addProperty("contentAmount",
-                        Integer.parseInt(JsonManager.getFieldOrNA("contentAmount", fileData)) + 1);
+                if (!(count + toBeAdded > 999 || count + toBeAdded < -99)) {
+                    fileData.addProperty("contentAmount",
+                            Integer.parseInt(JsonManager.getFieldOrNA("contentAmount", fileData)) + 1);
+                }
+
+                try {
+                    FileWriter myWriter = new FileWriter(
+                            "/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt");
+                    myWriter.write(String.valueOf(fileData));
+                    myWriter.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
 
             } catch (Exception e) {
             }
-            try {
-                FileWriter myWriter = new FileWriter(
-                        "/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt");
-                myWriter.write(String.valueOf(fileData));
-                myWriter.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+
         } else if (action == 10) {
             NewGame(recent() + 1);
+            Stopwatch.stop();
+            Stopwatch.stopStart = false;
+            Stopwatch.elapsedTime = 0;
+            Stopwatch.time = System.nanoTime();
+            Stopwatch.savedTime = 0;
+            Gui.stopwatch.setText("0:00:00:000");
         }
     }
 

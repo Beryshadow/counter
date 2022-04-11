@@ -20,6 +20,8 @@ public class Gui extends JFrame {
     Action Button6;
     Action Start_stop;
     Action Cancel;
+    Action Escape;
+    Action NewGame;
     Button but1 = new Button(25, 140, 100, 80, 1, 1);
     Button but2 = new Button(25, 220, 100, 80, 1, 2);
     Button but3 = new Button(25, 300, 100, 80, 1, 3);
@@ -117,6 +119,8 @@ public class Gui extends JFrame {
         Button6 = new Button6();
         Start_stop = new Start_stop();
         Cancel = new Cancel();
+        Escape = new Escape();
+        NewGame = new NewGame();
 
         JRootPane rootPane = j.getRootPane();
 
@@ -170,8 +174,17 @@ public class Gui extends JFrame {
         rootPane.getActionMap().put("start_stop", Start_stop);
 
         rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                        "Escape");
+        rootPane.getActionMap().put("Escape", Escape);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                 .put(KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_DOWN_MASK), "cancel");
         rootPane.getActionMap().put("cancel", Cancel);
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK), "new game");
+        rootPane.getActionMap().put("new game", NewGame);
 
         j.setTitle("Compteur");
         j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -335,6 +348,21 @@ public class Gui extends JFrame {
         public void actionPerformed(ActionEvent e) {
             folder.deletelast();
             refresh();
+        }
+    }
+
+    public class NewGame extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            folder.Log(10);
+            refresh();
+        }
+    }
+
+    public class Escape extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new Menu(499, 399);
         }
     }
 

@@ -1,17 +1,20 @@
 package com.example;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.Point;
 import javax.swing.*;
+import java.awt.event.*;
 
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
+import java.io.IOException;
 import java.awt.*;
+import java.awt.Desktop;
 
 import javax.swing.JFrame;
 
 public class Menu extends JFrame {
+
+    Action Escape;
 
     static Point mouseDownScreenCoords;
     static Point mouseDownCompCoords;
@@ -26,17 +29,19 @@ public class Menu extends JFrame {
         Text textNew = new Text("Nouvelle partie", 20);
         Text textClose = new Text("Fermer le programme", 20);
         Text textCancel = new Text("Annuler la dernière action", 20);
-        Text textBack = new Text("Retour en arrière", 20);
+        Text folders = new Text("Ouvrir les fichiers", 20);
 
         but1.add(textNew);
         but2.add(textClose);
         but3.add(textCancel);
-        but4.add(textBack);
+        but4.add(folders);
 
         this.add(but1);
         this.add(but2);
         this.add(but3);
         this.add(but4);
+
+        Escape = new Escape();
 
         this.setTitle("Menu");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -56,11 +61,12 @@ public class Menu extends JFrame {
         but4.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getSource() == but4) {
-                    int x = Menu.this.getX();
-                    int y = Menu.this.getY();
-                    new Gui(x, y);
-                    Menu.this.dispose();
-                    // make a new gui at the same location as the menu
+                    // open the folder
+                    try {
+                        Desktop.getDesktop().open(new File("/Counter Files"));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
                 }
             }
 
@@ -143,5 +149,20 @@ public class Menu extends JFrame {
                         mouseDownScreenCoords.y + (currCoords.y - mouseDownScreenCoords.y) - mouseDownCompCoords.y);
             }
         });
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                        "Escape");
+        rootPane.getActionMap().put("Escape", Escape);
+    }
+
+    public class Escape extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int x = Menu.this.getX();
+            int y = Menu.this.getY();
+            new Gui(x, y);
+            Menu.this.dispose();
+        }
     }
 }
