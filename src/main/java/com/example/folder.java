@@ -114,7 +114,6 @@ public class folder {
                     count = Integer.valueOf(JsonManager.getFieldOrNA("team2Count", fileData));
                     toBeAdded = Integer.valueOf(
                             JsonManager.getFieldOrNA("Value6", folder.readGame("/Counter Files\\settings.txt")));
-                    System.out.println(count + toBeAdded);
                     if (count + toBeAdded > 999 || count + toBeAdded < -99) {
                         return;
                     }
@@ -213,8 +212,11 @@ public class folder {
     public static void deletelast() {
         JsonObject fileData = readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt");
         int contentAmount = Integer.parseInt(JsonManager.getFieldOrNA("contentAmount", fileData));
+        if (contentAmount == 0) {
+            return;
+        }
         fileData.addProperty("contentAmount", contentAmount - 1);
-        // get the value of content amount and save it to the variable toBeRemoved
+
         int toBeRemoved = Integer.parseInt(JsonManager.getFieldOrNA(String.valueOf(contentAmount), fileData));
 
         int t1 = Integer.parseInt(JsonManager.getFieldOrNA("team1Count", fileData));
