@@ -48,7 +48,6 @@ public class Button extends JButton implements ActionListener, MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (this.number == 13) {
-            // close the menu and open gui
             Gui.j.setVisible(false);
         } else if (this.number == 11) {
             System.exit(0);
@@ -77,8 +76,7 @@ public class Button extends JButton implements ActionListener, MouseListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Dimension arcs = new Dimension(40, 40); // Border corners arcs {width,height}, change this to whatever
-                                                // you want
+        Dimension arcs = new Dimension(40, 40);
         int width = getWidth();
         int height = getHeight();
         Graphics2D graphics = (Graphics2D) g;
@@ -111,9 +109,9 @@ public class Button extends JButton implements ActionListener, MouseListener {
 
         // Draws the rounded panel with borders.
         graphics.setColor(colored.darker());
-        graphics.fillRoundRect(0, -1, width - 1, height - 1, arcs.width, arcs.height);// paint background
+        graphics.fillRoundRect(0, -1, width - 1, height - 1, arcs.width, arcs.height);
         graphics.setColor(colored.darker().darker().darker());
-        graphics.drawRoundRect(1, 1, width - 2, height - 2, arcs.width, arcs.height);// paint border
+        graphics.drawRoundRect(1, 1, width - 2, height - 2, arcs.width, arcs.height);
         graphics.drawRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);
         graphics.drawRoundRect(2, 2, width - 4, height - 4, arcs.width, arcs.height);
     }

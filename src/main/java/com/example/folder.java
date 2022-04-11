@@ -54,7 +54,6 @@ public class folder {
     public static void Log(int action) {
         if (!(action >= 7)) {
             JsonObject fileData = readGame("/Counter Files\\Saves\\" + String.valueOf(folder.recent()) + ".txt");
-            final JsonObject original = fileData;
             int count = 0;
             int toBeAdded = 0;
             try {

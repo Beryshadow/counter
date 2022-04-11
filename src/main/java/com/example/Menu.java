@@ -94,7 +94,6 @@ public class Menu extends JFrame {
                     int y = Menu.this.getY();
                     new Gui(x, y);
                     Menu.this.dispose();
-                    // make a new gui at the same location as the menu
                 }
             }
 
