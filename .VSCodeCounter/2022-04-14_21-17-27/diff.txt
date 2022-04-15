@@ -1,0 +1,48 @@
+Date : 2022-04-14 21:17:27
+Directory : c:\Users\berys\Java\Counter\counter
+Total : 15 files,  249 codes, 0 comments, 51 blanks, all 300 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Java     |         15 |        249 |          0 |         51 |        300 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                             | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                |         15 |        249 |          0 |         51 |        300 |
+| src                                                                              |          5 |        132 |          0 |         50 |        182 |
+| src\main                                                                         |          5 |        132 |          0 |         50 |        182 |
+| src\main\java                                                                    |          5 |        132 |          0 |         50 |        182 |
+| src\main\java\com                                                                |          5 |        132 |          0 |         50 |        182 |
+| src\main\java\com\example                                                        |          5 |        132 |          0 |         50 |        182 |
+| target                                                                           |         10 |        117 |          0 |          1 |        118 |
+| target\classes                                                                   |         10 |        117 |          0 |          1 |        118 |
+| target\classes\com                                                               |         10 |        117 |          0 |          1 |        118 |
+| target\classes\com\example                                                       |         10 |        117 |          0 |          1 |        118 |
++----------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                         | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\berys\Java\Counter\counter\src\main\java\com\example\Button.java        | Java     |          1 |          0 |          0 |          1 |
+| c:\Users\berys\Java\Counter\counter\src\main\java\com\example\Gui.java           | Java     |          4 |          0 |          1 |          5 |
+| c:\Users\berys\Java\Counter\counter\src\main\java\com\example\List.java          | Java     |        123 |          0 |         43 |        166 |
+| c:\Users\berys\Java\Counter\counter\src\main\java\com\example\Menu.java          | Java     |          4 |          0 |          4 |          8 |
+| c:\Users\berys\Java\Counter\counter\src\main\java\com\example\folder.java        | Java     |          0 |          0 |          2 |          2 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\Button.class      | Java     |          1 |          0 |          0 |          1 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\Gui$Escape.class  | Java     |         -3 |          0 |          0 |         -3 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\Gui.class         | Java     |          2 |          0 |          0 |          2 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\List$1.class      | Java     |         19 |          0 |          1 |         20 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\List$2.class      | Java     |         11 |          0 |          0 |         11 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\List$3.class      | Java     |         12 |          0 |          0 |         12 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\List$Escape.class | Java     |         11 |          0 |          0 |         11 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\List.class        | Java     |         70 |          0 |          0 |         70 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\Menu$Escape.class | Java     |         -3 |          0 |          0 |         -3 |
+| c:\Users\berys\Java\Counter\counter\target\classes\com\example\Menu.class        | Java     |         -3 |          0 |          0 |         -3 |
+| Total                                                                            |          |        249 |          0 |         51 |        300 |
++----------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
