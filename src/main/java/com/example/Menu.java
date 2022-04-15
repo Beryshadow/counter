@@ -16,10 +16,13 @@ public class Menu extends JFrame {
 
     Action Escape;
 
+    static JFrame m;
+
     static Point mouseDownScreenCoords;
     static Point mouseDownCompCoords;
 
-    public Menu(int x, int y) {
+    public Menu(Point location) {
+        m = new JFrame();
 
         Button but1 = new Button(50, 20, 400, 75, 4, 10);
         Button but2 = new Button(50, 115, 400, 75, 4, 11);
@@ -28,36 +31,45 @@ public class Menu extends JFrame {
 
         Text textNew = new Text("Nouvelle partie", 20);
         Text textClose = new Text("Fermer le programme", 20);
-        Text textCancel = new Text("Annuler la dernière action", 20);
+        Text textKeybinds = new Text("Ouvrir la liste des raccourcis", 20);
         Text folders = new Text("Ouvrir les fichiers", 20);
 
         but1.add(textNew);
         but2.add(textClose);
-        but3.add(textCancel);
+        but3.add(textKeybinds);
         but4.add(folders);
 
-        this.add(but1);
-        this.add(but2);
-        this.add(but3);
-        this.add(but4);
+        m.add(but1);
+        m.add(but2);
+        m.add(but3);
+        m.add(but4);
 
         Escape = new Escape();
 
-        this.setTitle("Menu");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.getContentPane().setBackground(Color.decode(
+        m.setTitle("Menu");
+        m.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        m.getContentPane().setBackground(Color.decode(
                 "#" + JsonManager.getFieldOrNA("Color4", folder.readGame("/Counter Files\\settings.txt"))));
-        this.setUndecorated(true);
-        this.setShape(new RoundRectangle2D.Double(0, 0, x, y, 40, 40));
-        setLocation(Gui.j.getLocation());
-        this.setSize(x + 15, y + 38);
-        this.setLayout(null);
-        getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 40, 17, Color.black));
-        this.setVisible(true);
+        m.setUndecorated(true);
+        m.setShape(new RoundRectangle2D.Double(0, 0, 499, 399, 40, 40));
+        m.setLocation(location.getLocation());
+        m.setSize(514, 437);
+        m.setLayout(null);
+        m.getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 40, 17, Color.black));
+        m.setVisible(true);
 
         if (Gui.j != null) {
             Gui.j.dispose();
         }
+
+        Escape = new Escape();
+
+        JRootPane rootPane = m.getRootPane();
+
+        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
+                        "Escape");
+        rootPane.getActionMap().put("Escape", Escape);
         but4.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getSource() == but4) {
@@ -90,10 +102,10 @@ public class Menu extends JFrame {
         but1.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getSource() == but1) {
-                    int x = Menu.this.getX();
-                    int y = Menu.this.getY();
+                    int x = Menu.m.getX();
+                    int y = Menu.m.getY();
                     new Gui(x, y);
-                    Menu.this.dispose();
+                    Menu.m.dispose();
                 }
             }
 
@@ -114,7 +126,7 @@ public class Menu extends JFrame {
             }
         });
 
-        this.addMouseListener(new MouseListener() {
+        m.addMouseListener(new MouseListener() {
             public void mouseReleased(MouseEvent e) {
                 mouseDownScreenCoords = null;
                 mouseDownCompCoords = null;
@@ -137,31 +149,27 @@ public class Menu extends JFrame {
             }
         });
 
-        this.addMouseMotionListener(new MouseMotionListener() {
+        m.addMouseMotionListener(new MouseMotionListener() {
             public void mouseMoved(MouseEvent e) {
             }
 
             public void mouseDragged(MouseEvent e) {
                 Point currCoords = e.getLocationOnScreen();
-                setLocation(
+                m.setLocation(
                         mouseDownScreenCoords.x + (currCoords.x - mouseDownScreenCoords.x) - mouseDownCompCoords.x,
                         mouseDownScreenCoords.y + (currCoords.y - mouseDownScreenCoords.y) - mouseDownCompCoords.y);
             }
         });
 
-        rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-                .put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-                        "Escape");
-        rootPane.getActionMap().put("Escape", Escape);
     }
 
     public class Escape extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int x = Menu.this.getX();
-            int y = Menu.this.getY();
+            int x = Menu.m.getX();
+            int y = Menu.m.getY();
             new Gui(x, y);
-            Menu.this.dispose();
+            Menu.m.dispose();
         }
     }
 }

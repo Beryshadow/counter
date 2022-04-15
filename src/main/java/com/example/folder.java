@@ -15,6 +15,13 @@ public class folder {
         File f2 = new File("/Counter Files\\Saves");
         JsonObject fileData = JsonParser.parseString("{}").getAsJsonObject();
         File myObj = new File("/Counter Files\\settings.txt");
+        f1.mkdir();
+        boolean bool = f2.mkdir();
+        if (bool) {
+        } else if (f1.exists()) {
+        } else {
+        }
+
         try {
             myObj.createNewFile();
         } catch (IOException ex) {
@@ -43,12 +50,7 @@ public class folder {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        f1.mkdir();
-        boolean bool = f2.mkdir();
-        if (bool) {
-        } else if (f1.exists()) {
-        } else {
-        }
+
     }
 
     public static void Log(int action) {

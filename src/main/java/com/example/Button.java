@@ -51,8 +51,6 @@ public class Button extends JButton implements ActionListener, MouseListener {
             Gui.j.setVisible(false);
         } else if (this.number == 11) {
             System.exit(0);
-        } else if (this.number == 12) {
-            folder.deletelast();
         }
     }
 
@@ -61,7 +59,10 @@ public class Button extends JButton implements ActionListener, MouseListener {
         if (e.getSource() == this) {
             folder.Log(this.number);
             if (this.number == 9) {
-                new Menu(499, 399);
+                Point location = Gui.j.getLocation();
+                new Menu(location);
+            } else if (this.number == 12) {
+                new List();
             }
 
             Gui.l1.setText(JsonManager.getFieldOrNA("team1Count",

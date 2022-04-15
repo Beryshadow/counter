@@ -33,7 +33,7 @@ public class Gui extends JFrame {
     Button butMenu = new Button(175, 285, 150, 80, 4, 9);
     public static Text textMenu = new Text("Menu");
     public static Text textStopStart = new Text("<html>Démarrer<br/>Arrêter</html>", 25);
-    public static Text textErase = new Text("Effacer", 35);
+    public static Text textErase = new Text("<html>Effacer le<br/>temps</html>", 25);
     public static Text text1 = new Text(1);
     public static Text text2 = new Text(2);
     public static Text text3 = new Text(3);
@@ -195,6 +195,10 @@ public class Gui extends JFrame {
         j.setSize(514, 437);
         j.setLayout(null);
         j.setVisible(true);
+
+        if (Menu.m != null) {
+            Menu.m.dispose();
+        }
 
         butStopStart.addMouseListener(new MouseListener() {
             public void mouseClicked(MouseEvent e) {
@@ -362,7 +366,8 @@ public class Gui extends JFrame {
     public class Escape extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
-            new Menu(499, 399);
+            Point location = j.getLocation();
+            new Menu(location);
         }
     }
 
